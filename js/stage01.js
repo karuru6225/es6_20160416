@@ -1,3 +1,3 @@
-let Task = require('babel!./task-model');
+import Task from './task-model';
 let task = new Task('test task');
 alert(task.name);
