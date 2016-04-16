@@ -1,3 +1,3 @@
-let Task = require('./task-model');
+import Task from './task-model';
 let task = new Task('test task');
 alert(task.name);
