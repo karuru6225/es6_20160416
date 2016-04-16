@@ -1,5 +1,6 @@
 export default class {
-  constructor(name){
-    this.name = name;
+  constructor(title, desc){
+    this.title = title;
+    this.description = desc;
   }
 }

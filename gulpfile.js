@@ -10,8 +10,9 @@ var watch = require('gulp-watch');
 var concat = require('gulp-concat');
 var stripDebug = require('gulp-strip-debug');
 var ejs = require('gulp-ejs');
-var babel = require('gulp-babel');
-var webpack = require('gulp-webpack');
+var print = require('gulp-print');
+//var babel = require('gulp-babel');
+var webpack = require('webpack-stream');
 
 gulp.task('server', function(){
   connect.server({
@@ -43,32 +44,34 @@ gulp.task('js', function(){
     .pipe(plumber({
       errorHandler: notify.onError('<%= error.message %>')
     }))
+    /*.pipe(babel({
+      presets: ['es2015']
+    }))*/
     .pipe(sourcemaps.init())
-    //.pipe(babel({
-    //  presets: ['es2015']
-    //}))
     .pipe(webpack({
       output: {
-        filename: 'bundled.js'
+        filename: 'stage01.js'
       },
       module: {
         loaders: [
           {
-            test: /\.jsx?$/,
-            exclude: /(node_modules|bower_components)/,
+            test: /\.js$/,
+            exclude: /node_modules/,
             loader: 'babel', // 'babel-loader' is also a legal name to reference
             query: {
               presets: ['es2015']
             }
           }
         ]
-      }
-    }))    // .pipe(concat('all.js'))
+      },
+      devtool: "source-maps"
+    }))
+    //.pipe(concat('all.js'))
     .pipe(gulp.dest('./pub/js'))
     //.pipe(stripDebug())
     //.pipe(uglify())
     //.pipe(rename({extname:'.min.js'}))
-    //.pipe(sourcemaps.write('./maps'))
+    .pipe(sourcemaps.write('./maps'))
     //.pipe(gulp.dest('./pub/js/min'))
     .pipe(connect.reload())
 });
