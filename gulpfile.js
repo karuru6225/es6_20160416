@@ -10,6 +10,7 @@ var watch = require('gulp-watch');
 var concat = require('gulp-concat');
 var stripDebug = require('gulp-strip-debug');
 var ejs = require('gulp-ejs');
+var babel = require('gulp-babel');
 
 gulp.task('server', function(){
   connect.server({
@@ -38,15 +39,20 @@ gulp.task('js', function(){
   gulp.src([
       './js/*.js',
     ])
-    .pipe(plumber({errorHandler: notify.onError('<%= error.message %>')}))
+    .pipe(plumber({
+      errorHandler: notify.onError('<%= error.message %>')
+    }))
     .pipe(sourcemaps.init())
-    .pipe(concat('main.js'))
+    .pipe(babel({
+      presets: ['es2015']}
+    ))
+    //.pipe(concat('all.js'))
     .pipe(gulp.dest('./pub/js'))
-    .pipe(stripDebug())
-    .pipe(uglify())
-    .pipe(rename({extname:'.min.js'}))
+    //.pipe(stripDebug())
+    //.pipe(uglify())
+    //.pipe(rename({extname:'.min.js'}))
     .pipe(sourcemaps.write('./maps'))
-    .pipe(gulp.dest('./pub/js/min'))
+    //.pipe(gulp.dest('./pub/js/min'))
     .pipe(connect.reload())
 });
 
