@@ -1,0 +1,32 @@
+{
+  "name": "es6_20160416",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/karuru6225/es6_20160416.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/karuru6225/es6_20160416/issues"
+  },
+  "homepage": "https://github.com/karuru6225/es6_20160416",
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-concat": "^2.6.0",
+    "gulp-connect": "^2.2.0",
+    "gulp-ejs": "^2.1.1",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^0.6.6",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.0.4",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-strip-debug": "^1.1.0",
+    "gulp-uglify": "^1.4.2",
+    "gulp-watch": "^4.3.5"
+  }
+}
