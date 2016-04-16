@@ -1,0 +1,1 @@
+{"version":3,"file":"base.css","sources":["base.scss"],"sourcesContent":["html, body {\n  margin: 0;\n  padding: 0;\n}\n\n#main {\n  padding: 16px;\n}\n"],"mappings":"AAAA,IAAI,CAAE,IAAI,AAAC,CACT,MAAM,CAAE,CAAE,CACV,OAAO,CAAE,CAAE,CACZ,AAED,KAAK,AAAC,CACJ,OAAO,CAAE,IAAK,CACf","names":[],"sourceRoot":"/source/"}

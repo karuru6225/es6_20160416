@@ -10,7 +10,8 @@ var watch = require('gulp-watch');
 var concat = require('gulp-concat');
 var stripDebug = require('gulp-strip-debug');
 var ejs = require('gulp-ejs');
-var babel = require('gulp-babel');
+//var babel = require('gulp-babel');
+var webpack = require('gulp-webpack');
 
 gulp.task('server', function(){
   connect.server({
@@ -43,9 +44,19 @@ gulp.task('js', function(){
       errorHandler: notify.onError('<%= error.message %>')
     }))
     .pipe(sourcemaps.init())
-    .pipe(babel({
-      presets: ['es2015']}
-    ))
+    //.pipe(babel({
+    //  presets: ['es2015']
+    //}))
+    .pipe(webpack({
+      output: {
+        filename: '[name]'
+      },
+      module: {
+        loaders: [
+          {test: /\.js$/, loader: 'babel-loader'}
+        ]
+      }
+    }))
     //.pipe(concat('all.js'))
     .pipe(gulp.dest('./pub/js'))
     //.pipe(stripDebug())
@@ -68,8 +79,6 @@ gulp.task('default',['server','sass','js','html'], function(){
     gulp.start(['reload']);
   });
 
-  //scssが更新されたらscssのコンパイル実行
-  //cssが生成されたらブラウザがリロードされる。
   watch('./scss/**/*.scss', function(){
     gulp.start( ['sass']);
   });
@@ -80,8 +89,6 @@ gulp.task('default',['server','sass','js','html'], function(){
     gulp.start(['js']);
   });
 
-  //htmlファイルのコンパイル
-  //pub以下にhtmlが生成されたらブラウザがリロードされる。
   watch([
     './html/*.html'
   ],function(){
